@@ -58,7 +58,7 @@ const infoToSchema = (name, fields) => {
       if (subs.length === 1) {
         deps.push(`type ${field}List [${cap(subs[0])}]`)
       } else {
-        deps.push(`type ${field}Union {\n${subs.map(k => `  | ${cap(k)} ${k}`).join('\n')}\n}`)
+        deps.push(`type ${field}Union Union {\n${subs.map(k => `  | ${cap(k)} ${k}`).join('\n')}\n} representation kinded`)
         deps.push(`type ${field}List [${field}Union]`)
       }
       props.push(`${field} ${field}List`)
