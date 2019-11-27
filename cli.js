@@ -7,5 +7,5 @@ const run = async argv => {
   console.log(strings.join('\n\n'))
 }
 
-// eslint-disable-next
+// eslint-disable-next-line
 require('yargs').command('$0 [files..]', 'Generate IPLD Struct from source csv files', () => {}, run).argv
