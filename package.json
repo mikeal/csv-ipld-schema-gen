@@ -1,6 +1,6 @@
 {
   "name": "csv-ipld-schema-gen",
-  "version": "0.0.0",
+  "version": "0.0.0-dev",
   "description": "Generate an IPLD Schema template from CSV data",
   "main": "index.js",
   "scripts": {
