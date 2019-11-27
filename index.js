@@ -32,7 +32,7 @@ const csvInfo = async reader => {
 
             if (!fields[key].types[_t]) fields[key].types[_t] = 0
             fields[key].types[_t] += 1
-           }
+          }
         }
         if (_type === 'number') _type = Number.isInteger(value) ? 'int' : 'float'
         if (_type === 'string' && !value) _type = 'empty'
@@ -59,7 +59,7 @@ const infoToSchema = (name, fields) => {
         deps.push(`type ${field}List [${cap(subs[0])}]`)
       } else {
         deps.push(`type ${field}Union {\n${subs.map(k => `  | ${cap(k)} ${k}`).join('\n')}\n}`)
-        deps.push(`type ${field}List [${fieldUnion}]`)
+        deps.push(`type ${field}List [${field}Union]`)
       }
       props.push(`${field} ${field}List`)
     } else if (types.string) {
@@ -80,7 +80,7 @@ const infoToSchema = (name, fields) => {
 
 const fromFile = async (filename, opts = {}) => {
   const inputStream = fs.createReadStream(filename, 'utf8')
-  const stream = createStream({...defaults, ...opts})
+  const stream = createStream({ ...defaults, ...opts })
   const reader = inputStream.pipe(stream).pipe(new PassThrough({ objectMode: true }))
   const info = await csvInfo(reader)
   const name = path.basename(filename).replace(/\./g, '_')
