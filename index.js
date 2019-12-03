@@ -58,7 +58,7 @@ const infoToSchema = (name, fields) => {
       if (subs.length === 1) {
         deps.push(`type ${field}List [${cap(subs[0])}]`)
       } else {
-        deps.push(`type ${field}Union Union {\n${subs.map(k => `  | ${cap(k)} ${k}`).join('\n')}\n} representation kinded`)
+        deps.push(`type ${field}Union union {\n${subs.map(k => `  | ${cap(k)} ${k}`).join('\n')}\n} representation kinded`)
         deps.push(`type ${field}List [${field}Union]`)
       }
       props.push(`${field} ${field}List`)
@@ -75,7 +75,7 @@ const infoToSchema = (name, fields) => {
     }
   }
   const _deps = deps.length ? `${deps.join('\n')}\n\n` : ''
-  return `${_deps}type ${name} Struct {\n${props.map(s => `  ${s}`).join('\n')}\n}`
+  return `${_deps}type ${name} struct {\n${props.map(s => `  ${s}`).join('\n')}\n}`
 }
 
 const fromFile = async (filename, opts = {}) => {
